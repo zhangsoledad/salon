@@ -50,7 +50,7 @@ React.render(
 ```
 上面代码看起来没什么问题，运行一下看看。
 
-先点击'one'的`button`，一些正常：
+先点击'one'的`button`，一切正常：
 
 ![click 'one' button](http://7fvk4m.com1.z0.glb.clouddn.com/FuolwoqBU7F8eGF69pYsUHrWHP6D)
 
