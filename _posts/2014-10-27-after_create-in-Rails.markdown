@@ -5,7 +5,7 @@ date:   2014-10-27 21:03:51
 categories: rails
 ---
 
-Rails 的回调方法after_create的小问题
+Rails 的回调方法callback的小问题
 ========
 
 我们来个小例子:
