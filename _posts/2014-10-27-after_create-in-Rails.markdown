@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Some problem in after_create"
+title:  "Some problem in callback"
 date:   2014-10-27 21:03:51
 categories: rails
 ---
@@ -105,4 +105,4 @@ end
 **看出来了么，关联表user_posts插入了两次.**
 这个原因是：autosave这个选项，：autosave为true时associated objects也会被save，对新记录这个选项默认为true，这个选项是通过after_create实现的，after_create会按照声明的顺序来调用，就产生了这个问题。
 
-rails开发组视乎也很纠结这个问题,[issue#16823](https://github.com/rails/rails/issues/16823),在使用中要多注意callback的顺序.
+rails开发组视乎也很纠结这个问题,[issue#16823](https://github.com/rails/rails/issues/16823),**在使用中要多注意callback的顺序**.
