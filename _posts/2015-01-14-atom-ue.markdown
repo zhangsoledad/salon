@@ -1,0 +1,40 @@
+---
+layout: post
+title:  "Atom使用体验"
+date:   2015-01-14 14:52:33
+categories: tools
+---
+Atom使用体验
+========
+
+开发客户端的同事使用的atom-shell开发，对Atom也是早有耳闻，就尝试的使用了一段时间。官方介绍：
+>At GitHub, we're building the text editor we've always wanted. A tool you can customize to do anything, but also use productively on the first day without ever touching a config file. Atom is modern, approachable, and hackable to the core. We can't wait to see what you build with it.
+
+![atom](http://7fvk4m.com1.z0.glb.clouddn.com/FugjIY4NBRknOvMA1i4f39h79LZQ)
+
+基本功能、外形和sublime几乎没区别，和git结合非常好，侧边栏和文件编辑窗口能根据颜色来显示 git 中的状态，默认的快捷键和sublime几乎是一样的。
+
+先说说相比于sublime的缺点吧：
+
+1. 由于框架的原因，性能有些差，体积也较大，有60M左右，启动速度比较慢，使用时有迟滞感，特别是tab拖动的时候，比起sublime的流畅来说，体验差一些。
+
+2. sublime的tab可以直接拖出来成单独的窗口，Atom不行，还是框架的问题。
+
+但是相比于sublime来说，也有很多优势：
+
+1. Atom是免费的，sublime死贵死贵的，虽然提供无限时的免费试用，但是在你ctrl+s的时候会时不时的弹出授权提醒。
+
+2. Atom是开源的，Atom的更新速度非常快，几乎每个星期会至少更新一次，我从大概0.140开始到现在0.170，Atom的改进很快，一开始bug还较多，
+时不时会卡住崩溃，现在已经能正常使用，也越来越流畅，反观sublime3，一直处于beta版，也没有怎么更新，完全要看作者的意愿。
+
+3. atom集成叫apm的插件管理系统，和sublime一样，使用插件增强功能很方便，atom插件非常多，开发也很活跃，主要归功于javascript的拥趸很多，
+都能参到插件开发里来。
+
+4. sublime在linux下不能输入中文，在mac下没有问题，虽然不是没有办法解决，但是每次更新版本要重新编译一次imfix实在是麻烦。
+
+目前在实际使用中，我已经用 Atom 替代掉 sublime 了，喜欢sublime的人可以试试。
+
+链接:
+
+* atom.io: [https://atom.io/](https://atom.io/)
+* github: [https://github.com/atom/atom](https://github.com/atom/atom)

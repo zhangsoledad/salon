@@ -1,7 +1,7 @@
 # Site settings
 title: Soledad's Salon
 email: zhangsoledad@gmail.com
-description:  '有时间就更一更'
+description:  '无证程序员 Rails Web Developer'
 baseurl: "/salon" # the subpath of your site, e.g. /blog/
 url: "http://zhangsoledad.github.io" # the base hostname & protocol for your site
 twitter_username: DingweiZhang

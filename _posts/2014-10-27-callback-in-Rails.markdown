@@ -5,7 +5,7 @@ date:   2014-10-27 21:03:51
 categories: rails
 ---
 
-Rails 的回调方法callback的小问题
+Rails的回调方法callback的小问题
 ========
 
 我们来个小例子:
@@ -63,7 +63,7 @@ User.create
   SQL (0.4ms)  INSERT INTO `posts` (`created_at`, `updated_at`) VALUES ('2015-04-06 15:10:31', '2015-04-06 15:10:31')
 Post - after create
    (47.0ms)  COMMIT
- => #<Post id: 2, created_at: "2015-04-06 15:10:31", updated_at: "2015-04-06 15:10:31"> 
+ => #<Post id: 2, created_at: "2015-04-06 15:10:31", updated_at: "2015-04-06 15:10:31">
 2.1.5 :002 > User.create
    (0.2ms)  BEGIN
   SQL (0.4ms)  INSERT INTO `users` (`created_at`, `updated_at`) VALUES ('2015-04-06 15:10:33', '2015-04-06 15:10:33')
@@ -72,7 +72,7 @@ start
   SQL (0.4ms)  INSERT INTO `user_posts` (`created_at`, `post_id`, `updated_at`, `user_id`) VALUES ('2015-04-06 15:10:33', 1, '2015-04-06 15:10:33', 4)
 end
    (26.4ms)  COMMIT
- => #<User id: 4, created_at: "2015-04-06 15:10:33", updated_at: "2015-04-06 15:10:33"> 
+ => #<User id: 4, created_at: "2015-04-06 15:10:33", updated_at: "2015-04-06 15:10:33">
 ```
 
 都很正常,我们将上面User里的代码调整一下，把after_create放到has_many前面:
@@ -89,7 +89,7 @@ reload!然后再User.create，结果：
 ```ruby
 
 Reloading...
- => true 
+ => true
 2.1.5 :005 > User.create
    (0.1ms)  BEGIN
   SQL (0.4ms)  INSERT INTO `users` (`created_at`, `updated_at`) VALUES ('2015-04-06 15:18:04', '2015-04-06 15:18:04')
@@ -99,7 +99,7 @@ start
 end
   SQL (7.7ms)  INSERT INTO `user_posts` (`created_at`, `post_id`, `updated_at`, `user_id`) VALUES ('2015-04-06 15:18:04', 1, '2015-04-06 15:18:04', 5)
    (68.1ms)  COMMIT
- => #<User id: 5, created_at: "2015-04-06 15:18:04", updated_at: "2015-04-06 15:18:04"> 
+ => #<User id: 5, created_at: "2015-04-06 15:18:04", updated_at: "2015-04-06 15:18:04">
 
 ```
 **看出来了么，关联表user_posts插入了两次.**
