@@ -102,7 +102,34 @@ end
  => #<User id: 5, created_at: "2015-04-06 15:18:04", updated_at: "2015-04-06 15:18:04">
 
 ```
-**看出来了么，关联表user_posts插入了两次.**
-这个原因是：autosave这个选项，：autosave为true时associated objects也会被save，对新记录这个选项默认为true，这个选项是通过after_create实现的，after_create会按照声明的顺序来调用，就产生了这个问题。
+**这时发生了诡异的行为，关联表user_posts插入了两条重复的数据**。
 
-rails开发组视乎也很纠结这个问题,[issue#16823](https://github.com/rails/rails/issues/16823),**在使用中要多注意callback的顺序**.
+这个原因是`:autosave`这个选项，`:autosave`为`true`时`associated objects`也会被save，对新记录这个选项默认为`true`，这个选项是通过`after_create`实现的，`after_create`会按照声明的顺序来调用，就产生了这个问题。
+
+**在使用中要多注意callback的顺序**，在rails文档中已指出，callback不要放到associations前面定义，如果使用rails 4的`ActiveSupport::Concern`也要注意`include`的顺序如下：
+
+```ruby
+
+module AutoIncrement
+  extend ActiveSupport::Concern
+
+  included do
+    after_create :add_posts
+  end
+
+  def add_posts
+    puts 'start'
+    self.posts << Post.first
+    puts 'end'
+  end
+end
+
+class User < ActiveRecord::Base
+  has_many :user_posts
+  has_many :posts, :through => :user_posts
+  include AutoIncrement
+end
+
+```
+
+rails开发组关于这点也在征求好的改进意见，[issue#16823](https://github.com/rails/rails/issues/16823)。
