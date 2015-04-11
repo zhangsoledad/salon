@@ -1,0 +1,97 @@
+---
+layout: post
+title:  "React初用"
+date:   2015-01-03 12:56:02
+categories: react
+---
+React初用
+========
+
+随着web开发需求越来多样化，网页操作越来越复杂，前端的技术发展也是日新月异，从 Backbone 这样的mvc框架，再到 Angular、Ember 这样的 mvvm 框架，层出不穷，以及最近带来革命性“Virtual DOM”概念的 React 。
+
+实际上用 React 和 Angular、Backbone 这样的框架比有些不合适，因为 **React 仅仅是 VIEW 层**。
+
+我们的网站使用的是 Backbone， Backbone 这个框架可以说是十分简易，它只提供了mvc的架构，以及来自于 Underscore 一些很好用的函数，View 层的事件管理也很让代码复用变得很方便，但是 Backbone 有两个不如人意的地方，其一是与服务端交互的 Restful 接口写得很傻，这一块要重写掉才能用，实际上这一块 Backbone不如不做，让使用者自己装载数据；其二是 Underscore 的模板功能很弱，没有双向绑定，在Dom操作很复杂的时候，写起来很麻烦。算是该有的没有，不该做的却做了。
+
+React 恰好可以弥补 Backbone 的弱点，React在 Facebook 的产品中也有应用，在下面网站：
+
+* [https://www.airbnb.com.au/go/US](https://www.facebook.com/) （登录后）
+* [https://www.airbnb.com.au/go/US](https://instagram.com/) （登录后）
+* [https://www.airbnb.com.au/go/US](https://www.airbnb.com.au/go/US)
+在浏览器终端输入：
+
+```javascript
+
+  setInterval(function() { Array.prototype.slice.call(
+    document.querySelectorAll('[data-reactid]')).forEach(function(element) {
+      element.style.background = 'rgba(255,0,0,0.1)';}
+    )
+  }, 500)
+```
+
+可以看到 React 的应用区域。
+
+如果有人问我该用 React 吗？我会马上回答：是的，并且你现在应该开始了。从 Web Components 这个新标准出现以来，前端组件化的 UI 已经是 web 开发的趋势了。而 Facebook 对于 React 的定位是为了解决一个问题：**构建随着时间数据不断变化的大规模应用程序**。这篇[博客](http://facebook.github.io/react/blog/2013/06/05/why-react.html)阐述了 Facebook 创造 React 的动机。
+
+在实际使用 React 之后，我心里的感受是真想登上武当山，大喊：“师妹，我已经天下无敌了”  (ﾟ皿ﾟﾒ)
+
+```javascript
+
+var MyComponent = React.createClass({
+  render: function() {
+    return (
+      <div>
+        <input type="text"/>
+        <input type="button"/>
+        <a href='#' />
+      </div>
+    );
+  }
+});
+```
+你可以使用html标签和 React组件来构筑新的组件，React 都是关于构建可复用的组件。事实上，通过 React 你唯一要做的事情就是构建组件。React跳出了传统的字符串模板思维，**React 组件其实是一个状态机**。
+
+```javascript
+
+var LikeButton = React.createClass({
+  getInitialState: function() {
+    return {liked: false};
+  },
+  handleClick: function(event) {
+    this.setState({liked: !this.state.liked});
+  },
+  render: function() {
+    var text = this.state.liked ? 'like' : 'haven\'t liked';
+    return (
+      <p onClick={this.handleClick}>
+        You {text} this. Click to toggle.
+      </p>
+    );
+  }
+});
+
+React.render(
+  <LikeButton />,
+  document.getElementById('example')
+);
+```
+
+React 把用户界面当作简单状态机。把用户界面想像成拥有不同状态然后渲染这些状态，可以轻松让用户界面和数据保持一致。对于开发者，不再需要操作 DOM，只需要关注 state，当更新组件的 state 后，React 会根据新的 state 重新渲染用户界面。React 来决定如何更新 DOM（React有一套高效的算法来更新DOM ，性能比原生 DOM 还要好），这确确实实是天才的构思，在使用后我也实实在在的受惠于此，你不用再去操作 DOM。
+
+但是还**需要再考虑一下这些**：
+
+**React 仅仅是个 view 层。下面这些都没有：**
+
+* 事件系统（除了原生的 DOM 事件）
+* AJAX 功能
+* 数据层
+* Promises
+* 应用程序架构
+* **实现以上功能的规范**
+
+React 的相关支持技术还不成熟，如 [Flux](https://github.com/facebook/flux)
+
+同时**React 不支持 IE8 以下的任何浏览器，以后也绝不会。**
+
+* [React](http://facebook.github.io/react/)
+* [中文文档](https://github.com/facebook/react/tree/master/docs/docs)
