@@ -1,11 +1,11 @@
 ---
 layout: post
-title:  "Gitlab的 权限管理"
+title:  "GitLab的 权限管理"
 date:   2015-04-11 17:37:24
 categories: rails
 ---
 
-Gitlab的 权限管理
+GitLab的 权限管理
 ========
 我们网站的后台用了 [erbac](https://github.com/douxing/erbac)来管理权限，是同事从yii那边改过来的，我没有用过yii，这套东西或许适合php，但是根本不适合 Rails，性能超烂。
 
