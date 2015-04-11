@@ -1,0 +1,32 @@
+---
+layout: post
+title:  "BFC 简介"
+date:   2014-07-16 21:51:44
+categories: css
+---
+
+BFC这个概念最近突然很好，我也去网站查了很多资料，实际上不是什么新概念，很可能你已经在用了，只是不知道什么叫BFC。
+
+BFC(Block Formatting Context)是W3C [CSS 2.1](http://www.w3.org/TR/CSS2/visuren.html#block-formatting) 规范中的一个概念。
+
+如何触发 BFC:
+
+* 浮动元素，float 除 none 以外的值
+* 绝对定位元素，position（absolute，fixed）
+* display 为以下其中之一的值 inline-blocks，table-cells，table-captions
+* overflow 除了 visible 以外的值（hidden，auto，scroll）
+
+BFC的约束：
+
+* 内部的boxes会在垂直方向从顶部一个接一个的放置。
+* 垂直方向上的距离由margin决定。（属于同一个BFC的两个相邻的块级 boxes 的margin会发生重叠。）
+* 在BFC中， 每个box的左外边界与包含块的左边界相接触，即使浮动元素也是如此。
+* BFC的区域不会与float的元素区域重叠。
+* 计算BFC的高度时，浮动子元素也参与计算。
+* BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面元素，反之亦然。
+
+BFC的好处：
+
+* BFC 之间外margin不会折叠。
+* BFC 可以包含浮动的元素，浮动子元素也参与计算，防止高度塌陷。
+* BFC 可以阻止元素被浮动元素覆盖。
