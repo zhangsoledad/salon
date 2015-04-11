@@ -1,0 +1,10 @@
+---
+layout: post
+title:  "IK分词器的Solr插件"
+date:   2015-03-16 17:41:02
+categories: react
+---
+IK分词器的Solr插件
+========
+
+我把自己写的<a href="https://github.com/zhangsoledad/solr-ik" target="_blank">IK分词器的Solr插件</a>，放到了GitHub上，做了点小调整，效果还可以。
