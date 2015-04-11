@@ -1,0 +1,14 @@
+---
+layout: post
+title:  "Gitlab的 权限管理"
+date:   2015-04-11 17:37:24
+categories: rails
+---
+
+Gitlab的 权限管理
+========
+我们网站的后台用了 [erbac](https://github.com/douxing/erbac)来管理权限，是同事从yii那边改过来的，我没有用过yii，这套东西或许适合php，但是根本不适合 Rails，性能超烂。
+
+我现在来善后维护后台，需要重构权限。我不打算用 cancan 这样的 Gem，在 Rails 开发的时候，很多人喜欢依赖于 Gem，有些简单功能或许可以用 Gem 实现节约时间，但是对于一些复杂却特定的功能，用 Gem 就要多思考一下了，特别是那些在背后做了太多或者太难理解工作的 Gem，我们网站在用 Devise 时就吃了苦头，Devise 这样的框架为了应付复杂多样的需求，必然会很复杂庞大，而且也不可能满足得了所有的需求，Rei的一篇博客写得很好，[你不需要这些 Gems](http://chloerei.com/2013/11/22/you-do-not-need-these-gems/)。
+
+我去参考了 GitLab 的源码，发现他们用了一个叫 [six](https://github.com/randx/six) 的Gem，这个 Gem 很简单，总的只有200行代码， [GitLab](https://gitlab.com/gitlab-org/gitlab-ce/blob/master/app/models/ability.rb) 这种设计很好，实现权限判断时，重要的是自己的设计。
