@@ -27,7 +27,9 @@ Loading development environment (Rails 3.2.18)
 ```
 
 开发组开始还不打算修这个bug
+
 ![fix](http://7fvk4m.com1.z0.glb.clouddn.com/Fs3rxj6do--XnBzlmTk9dH1Ib_Hc)
 
 最后他们还是默默的修了
+
 ![not fix](http://7fvk4m.com1.z0.glb.clouddn.com/Fsyp4gUIwCWsGZEVbvVXuy18OvLm)
