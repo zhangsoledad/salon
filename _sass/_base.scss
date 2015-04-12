@@ -16,6 +16,8 @@ p { margin-after: 0.5em;}
  * Basic styling
  */
 body {
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
     font-family: $base-font-family;
     font-size: $base-font-size;
     line-height: $base-line-height;
@@ -24,7 +26,6 @@ body {
     background-color: $background-color;
     -webkit-text-size-adjust: 100%;
 }
-
 
 /**
  * Set `margin-bottom` to maintain vertical rhythm
@@ -136,6 +137,7 @@ code {
 
 code {
     padding: 1px 5px;
+    font-family: 'Courier New', Monaco, 'Deja Vu Sans Mono' ;
 }
 
 pre {
