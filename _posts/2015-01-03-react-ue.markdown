@@ -15,8 +15,8 @@ React初用
 
 React 恰好可以弥补 Backbone 的弱点，React在 Facebook 的产品中也有应用，在下面网站：
 
-* [https://www.airbnb.com.au/go/US](https://www.facebook.com/) （登录后）
-* [https://www.airbnb.com.au/go/US](https://instagram.com/) （登录后）
+* [https://www.facebook.com/](https://www.facebook.com/) （登录后）
+* [https://instagram.com/](https://instagram.com/) （登录后）
 * [https://www.airbnb.com.au/go/US](https://www.airbnb.com.au/go/US)
 在浏览器终端输入：
 
