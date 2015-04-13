@@ -1,0 +1,16 @@
+---
+layout: post
+title:  "react-rails 1.0发布"
+date:   2015-04-13 12:56:22
+categories: rails
+---
+
+react-rails 1.0发布
+========
+react-rails 这个 gem 的1.0版本在前几天发布了，提供了一些新特性：
+
+* 通过 view helper 和 `react_ujs`在 views里加载组件；
+* 在服务端渲染组件；
+* Generate components；
+
+详情[react-rails](https://github.com/reactjs/react-rails)
