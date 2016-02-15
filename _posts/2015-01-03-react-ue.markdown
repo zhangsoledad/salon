@@ -29,6 +29,7 @@ React 恰好可以弥补 Backbone 的弱点，React在 Facebook 的产品中也�
 如果有人问我该用 React 吗？我会马上回答：是的，并且你现在应该开始了。从 Web Components 这个新标准出现以来，前端组件化的 UI 已经是 web 开发的趋势了。而 Facebook 对于 React 的定位是为了解决一个问题：**构建随着时间数据不断变化的大规模应用程序**。这篇[博客](http://facebook.github.io/react/blog/2013/06/05/why-react.html)阐述了 Facebook 创造 React 的动机。
 
 在实际使用 React 之后，我心里的感受是真想登上武当山，大喊：“师妹，我已经天下无敌了”  (ﾟ皿ﾟﾒ)
+
     var MyComponent = React.createClass({
       render: function() {
         return (
@@ -40,6 +41,7 @@ React 恰好可以弥补 Backbone 的弱点，React在 Facebook 的产品中也�
         );
       }
     });
+
 你可以使用html标签和 React组件来构筑新的组件，React 都是关于构建可复用的组件。事实上，通过 React 你唯一要做的事情就是构建组件。React跳出了传统的字符串模板思维，**React 组件其实是一个状态机**。
 
     var LikeButton = React.createClass({
