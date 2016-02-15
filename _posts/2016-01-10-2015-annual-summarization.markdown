@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "2015杂技总结(呃、)"
-date:   2016-02-10 12:56:22
+date:   2016-01-10 12:56:22
 categories: rails
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "GitHub Pages升级"
-date:   2016-02-11 14:56:22
+date:   2016-02-13 14:56:22
 categories: blog
 ---
 
@@ -33,7 +33,7 @@ ruby def hello puts 'Hello' end
     kramdown:
       input: GFM
 
-诶，好像没用啊，因为现在版本有bug、，Jekyll从 `_config.yml`文件中读取的key使用的是`String`，而 `kramdown`的设置使用的是`Symbol`，[issue#4427](https://github.com/jekyll/jekyll/issues/4427)(好low的bug)，3.1.2发布会修复，在此之前，你可以自己写`plugins`
+诶，好像没用啊，因为现在版本有bug、，Jekyll从 `_config.yml`文件中读取的key使用的是`String`，而 `kramdown`的设置使用的是`Symbol`，[issue#4427](https://github.com/jekyll/jekyll/issues/4427)(好low的bug)，3.1.2发布会修复(都几个版本了喂)，在此之前，你可以自己写`plugins`
 
 `_plugins/my_kramdown.rb`
 
