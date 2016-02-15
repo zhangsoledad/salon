@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "2015年终终结"
-date:   2016-01-10 12:56:22
+title:  "2015杂技总结(呃、)"
+date:   2016-02-10 12:56:22
 categories: rails
 ---
 
@@ -12,18 +12,16 @@ categories: rails
 
 * migration comment
 
-* 并发场景创建唯一索引，Mysql不支持索引加条件，可采用增加一个字段作为索引的triger。
+* 并发场景创建唯一索引，Mysql不支持索引加条件，可以采取一个比较hacker的办法，sql标准里面NULL是不等于NULL的，Mysql遵照了这条标准，可采用增加一个字段作为索引的triger。
 
-```sql
-  select (null = null); \\null
-  select (1 = 2); \\ 0
-  select (1 = 1); \\ 1
 
-  unique_trigger :boolean
-  update(unique_trigger: true) 开启唯一索引
-  update(unique_trigger: nil) 关闭唯一索引
+        select (null = null); #null
+        select (1 = 2); #0
+        select (1 = 1); #1
 
-```
+        unique_trigger :boolean
+        update(unique_trigger: true) 开启唯一索引
+        update(unique_trigger: nil) 关闭唯一索引
 
 * 需要索引的列如果是string，加上limit限制长度，mysql的索引列长度不能超过767bytes(utf8-255, utf8mb4-191)
 
@@ -32,45 +30,38 @@ categories: rails
 * 预加载(preload,includes,eager)  
 
 [3 ways to do eager loading ](http://blog.arkency.com/2013/12/rails4-preloading/)
-   * preload 总是拆分sql
-   * eager_load 总是合并sql（join）
-   * includes 如果使用了where 并且where制定的列是来自于预载的表会代理给eager_load
+  * preload 总是拆分sql
+  * eager_load 总是合并sql（join）
+  * includes 如果使用了where 并且where制定的列是来自于预载的表会代理给eager_load
 
-```ruby
-  User.includes(:addresses).where("addresses.country = ?", "Poland")
-  User.eager_load(:addresses).where("addresses.country = ?", "Poland")
-
-```
+        User.includes(:addresses).where("addresses.country = ?", "Poland")
+        User.eager_load(:addresses).where("addresses.country = ?", "Poland")
 
 根据场景选择判断
 
-```ruby
-scope = Auction.includes(:auction_session, :shop, :bids, :users_auctions, :order, car: [:images, :configuration])
+    scope = Auction.includes(:auction_session, :shop, :bids, :users_auctions, :order, car: [:images, :configuration])
 
-```
 ![](http://git.souche.com/cheniu/cheniu_auction/uploads/cd353cbf14975bd41e414fd6a8db0494/007AD190-680C-412F-8BB2-C3BDA7720A50.png)
 
 上面这段代码，后面的查询条件和预载的表相关，生成的sql会`join`8张表，造成性能问题，这个时候应该使用preload
 
-```ruby
-scope = Auction.preload(:auction_session, :shop, :bids, :users_auctions, :order, car: [:images, :configuration])
+        scope = Auction.preload(:auction_session, :shop, :bids, :users_auctions, :order, car: [:images, :configuration])
 
-```
+《High Performance MySQL》 Chapter 6, Ways to Restructure Queries, Join Decomposition
 
-<High Performance MySQL> Chapter 6, Ways to Restructure Queries, Join Decomposition
 
 It looks wasteful at first glance, because you’ve increased the number of queries without getting anything in return. However, such restructuring can actually give significant performance advantages:
+
 
 * 简单查询的缓存更加高效
 * 降低锁竞争
 * 减少扫描的行数
 
-```ruby
-  #be careful, association with argument scope can't preload
-has_one :amount_record, ->(order){ where(auction_id: order.auction_id) }, foreign_key: :user_id, primary_key: :user_id
-has_one :users_auction, ->(order){ where(auction_id: order.auction_id) }, foreign_key: :user_id, primary_key: :user_id
 
-```
+
+        #be careful, association with argument scope can't preload
+        has_one :amount_record, ->(order){ where(auction_id: order.auction_id) }, foreign_key: :user_id, primary_key: :user_id
+        has_one :users_auction, ->(order){ where(auction_id: order.auction_id) }, foreign_key: :user_id, primary_key: :user_id
 
 rails提供的预加载适用场景有限,更复杂的场景需要自己做hash匹配.
 
@@ -82,21 +73,19 @@ rails提供的预加载适用场景有限,更复杂的场景需要自己做hash�
 * 方法参数尽量用关键字参数
 * [Why You Should Never Rescue Exception in Ruby](http://daniel.fone.net.nz/blog/2013/05/28/why-you-should-never-rescue-exception-in-ruby/)
 
-```ruby
-  SystemStackError
-NoMemoryError
-  SecurityError
-  ScriptError
-    NotImplementedError
-    LoadError
-      Gem::LoadError
-    SyntaxError
-  SignalException
-    Interrupt
-  SystemExit
-    Gem::SystemExitException
+          SystemStackError
+        NoMemoryError
+          SecurityError
+          ScriptError
+            NotImplementedError
+            LoadError
+              Gem::LoadError
+            SyntaxError
+          SignalException
+            Interrupt
+          SystemExit
+            Gem::SystemExitException
 
-```
 
 rescue => e 是 rescue StandardError => e 的缩写
 
@@ -122,29 +111,22 @@ in Rails 3.2.13 , there are 375 StandardErrors defined. 最好是明确需要捕
 
 * 这种写法太原始低级了,没法控制异常,ruby的并发是个蛋疼问题.
 
-```ruby
-Benchmark.ms {
-  threads = []
-  20.times do
-    threads << Thread.new do
-      ActiveRecord::Base.connection_pool.with_connection do |conn|
-        conn.execute("select sleep(1)")
-      end
-    end
-  end
-  threads.each(&:join)
-}
+        Benchmark.ms {
+          threads = []
+          20.times do
+            threads << Thread.new do
+              ActiveRecord::Base.connection_pool.with_connection do |conn|
+                conn.execute("select sleep(1)")
+              end
+            end
+          end
+          threads.each(&:join)
+        }
 
-```
-
-
-```ruby
-Benchmark.ms {
-  20.times do
-    ActiveRecord::Base.connection_pool.with_connection do |conn|
-      conn.execute("select sleep(1)")
-    end
-  end
-}
-
-```
+        Benchmark.ms {
+          20.times do
+            ActiveRecord::Base.connection_pool.with_connection do |conn|
+              conn.execute("select sleep(1)")
+            end
+          end
+        }

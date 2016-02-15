@@ -11,12 +11,11 @@ react-rails
 
 这个功能在master分支上有，这个分支上没有
 
-```ruby
-config.react.jsx_transform_options = {
-  harmony: true,
-  strip_types: true, # for removing Flow type annotations
-}
-```
+    config.react.jsx_transform_options = {
+      harmony: true,
+      strip_types: true, # for removing Flow type annotations
+    }
+
 今天 React 发布了0.13.1，修复了一些小bug，react-rails也没能及时更新。
 
 我提交了[pull request](https://github.com/reactjs/react-rails/pull/202)，不过看起来他们是不想浪费时间在这个分支上了，但是1.0不知道要等到什么时候才能release，所以现在先fork出来，使用自己的分支吧。可以参考[我的](https://github.com/zhangsoledad/react-rails)

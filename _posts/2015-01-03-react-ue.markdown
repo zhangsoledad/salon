@@ -19,62 +19,51 @@ React 恰好可以弥补 Backbone 的弱点，React在 Facebook 的产品中也�
 * [https://instagram.com/](https://instagram.com/) （登录后）
 * [https://www.airbnb.com.au/go/US](https://www.airbnb.com.au/go/US)
 在浏览器终端输入：
-
-```javascript
-
-  setInterval(function() { Array.prototype.slice.call(
-    document.querySelectorAll('[data-reactid]')).forEach(function(element) {
-      element.style.background = 'rgba(255,0,0,0.1)';}
-    )
-  }, 500)
-```
-
+    setInterval(function() { Array.prototype.slice.call(
+      document.querySelectorAll('[data-reactid]')).forEach(function(element) {
+        element.style.background = 'rgba(255,0,0,0.1)';}
+      )
+    }, 500)
 可以看到 React 的应用区域。
 
 如果有人问我该用 React 吗？我会马上回答：是的，并且你现在应该开始了。从 Web Components 这个新标准出现以来，前端组件化的 UI 已经是 web 开发的趋势了。而 Facebook 对于 React 的定位是为了解决一个问题：**构建随着时间数据不断变化的大规模应用程序**。这篇[博客](http://facebook.github.io/react/blog/2013/06/05/why-react.html)阐述了 Facebook 创造 React 的动机。
 
 在实际使用 React 之后，我心里的感受是真想登上武当山，大喊：“师妹，我已经天下无敌了”  (ﾟ皿ﾟﾒ)
-
-```javascript
-
-var MyComponent = React.createClass({
-  render: function() {
-    return (
-      <div>
-        <input type="text"/>
-        <input type="button"/>
-        <a href='#' />
-      </div>
-    );
-  }
-});
-```
+    var MyComponent = React.createClass({
+      render: function() {
+        return (
+          <div>
+            <input type="text"/>
+            <input type="button"/>
+            <a href='#' />
+          </div>
+        );
+      }
+    });
 你可以使用html标签和 React组件来构筑新的组件，React 都是关于构建可复用的组件。事实上，通过 React 你唯一要做的事情就是构建组件。React跳出了传统的字符串模板思维，**React 组件其实是一个状态机**。
 
-```javascript
+    var LikeButton = React.createClass({
+      getInitialState: function() {
+        return {liked: false};
+      },
+      handleClick: function(event) {
+        this.setState({liked: !this.state.liked});
+      },
+      render: function() {
+        var text = this.state.liked ? 'like' : 'haven\'t liked';
+        return (
+          <p onClick={this.handleClick}>
+            You {text} this. Click to toggle.
+          </p>
+        );
+      }
+    });
 
-var LikeButton = React.createClass({
-  getInitialState: function() {
-    return {liked: false};
-  },
-  handleClick: function(event) {
-    this.setState({liked: !this.state.liked});
-  },
-  render: function() {
-    var text = this.state.liked ? 'like' : 'haven\'t liked';
-    return (
-      <p onClick={this.handleClick}>
-        You {text} this. Click to toggle.
-      </p>
+    React.render(
+      <LikeButton />,
+      document.getElementById('example')
     );
-  }
-});
 
-React.render(
-  <LikeButton />,
-  document.getElementById('example')
-);
-```
 
 React 把用户界面当作简单状态机。把用户界面想像成拥有不同状态然后渲染这些状态，可以轻松让用户界面和数据保持一致。对于开发者，不再需要操作 DOM，只需要关注 state，当更新组件的 state 后，React 会根据新的 state 重新渲染用户界面。React 来决定如何更新 DOM（React有一套高效的算法来更新DOM ，性能比原生 DOM 还要好），这确确实实是天才的构思，在使用后我也实实在在的受惠于此，你不用再去操作 DOM。
 
