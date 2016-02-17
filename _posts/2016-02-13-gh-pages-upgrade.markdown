@@ -6,7 +6,7 @@ categories: blog
 ---
 
 ### GitHub Pages升级
-blog好久没更,一更就收到了github的warning，GitHub Pages最近发布升级，升级到Jekyll 3.0，blog需要做些调整。
+GitHub Pages最近发布升级，升级到Jekyll 3.0，blog需要做些调整。
 
 Two additional changes:
 
